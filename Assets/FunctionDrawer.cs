@@ -8,7 +8,7 @@ public class FunctionDrawer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        draw("x*x + y*y");
 	}
 	
 	// Update is called once per frame
@@ -18,7 +18,7 @@ public class FunctionDrawer : MonoBehaviour {
 
     public void draw(string function)
     {
-        GameObject gameObject = Instantiate(function3DObject, Vector3.zero, Quaternion.identity, transform) as GameObject;
+        GameObject gameObject = Instantiate(function3DObject, transform.position + Vector3.zero, Quaternion.identity, transform) as GameObject;
         Function3D function3D = gameObject.GetComponent<Function3D>();
         function3D.function = function;
         function3D.compile();

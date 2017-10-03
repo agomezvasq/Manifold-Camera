@@ -193,10 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224b92563824cb94799c72b68696ec38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planePreviewSize: 100
-  plane1Position: {x: 50, y: 0, z: 50}
+  planePreviewSize: 50
+  plane1Position: {x: 25, y: 0, z: 25}
   plane1Rotation: {x: 0, y: 0, z: 0}
-  plane2Position: {x: 50, y: 100, z: 50}
+  plane2Position: {x: 25, y: 50, z: 25}
   plane2Rotation: {x: 180, y: 0, z: 0}
 --- !u!114 &114863253786050040
 MonoBehaviour:
@@ -229,8 +229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224b92563824cb94799c72b68696ec38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planePreviewSize: 100
-  plane1Position: {x: 50, y: 0, z: 50}
+  planePreviewSize: 50
+  plane1Position: {x: 25, y: 0, z: 25}
   plane1Rotation: {x: 0, y: 0, z: 0}
-  plane2Position: {x: 50, y: 100, z: 50}
+  plane2Position: {x: 25, y: 50, z: 25}
   plane2Rotation: {x: 180, y: 0, z: 0}
