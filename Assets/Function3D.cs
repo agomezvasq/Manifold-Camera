@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ciloci.Flee;
 using System;
+using NCalc;
 
 public class Function3D : MonoBehaviour
 {
@@ -36,8 +37,8 @@ public class Function3D : MonoBehaviour
         meshFilter1.mesh = new Mesh();
         meshFilter2.mesh = new Mesh();
 
-        context = new ExpressionContext();
-        context.Imports.AddType(typeof(System.Math));
+        //context = new ExpressionContext();
+        //context.Imports.AddType(typeof(System.Math));
         compile();
 
         Grid();
@@ -48,10 +49,13 @@ public class Function3D : MonoBehaviour
 
     public void compile()
     {
-        context.Variables["x"] = 0f;
-        context.Variables["y"] = 0f;
-        context.Variables["z"] = 0f;
-        e = context.CompileGeneric<double>(function);
+        //context.Variables["x"] = 0f;
+        //context.Variables["y"] = 0f;
+        //context.Variables["z"] = 0f;
+        //e = context.CompileGeneric<double>(function);
+        e = new Expression(function);
+        e.Parameters["x"] = 0f;
+        e.Parameters["y"] = 0f;
     }
 
     // Update is called once per frame
@@ -87,14 +91,18 @@ public class Function3D : MonoBehaviour
         meshFilter2.mesh.RecalculateNormals();
     }
 
-    ExpressionContext context;
-    IGenericExpression<double> e;
+    //ExpressionContext context;
+    //IGenericExpression<double> e;
+    Expression e;
 
     float f(Vector3 v)
     {
-        context.Variables["x"] = v.x;
-        context.Variables["y"] = v.y;
-        context.Variables["z"] = v.z;
+        //context.Variables["x"] = v.x;
+        //context.Variables["y"] = v.y;
+        //context.Variables["z"] = v.z;
+        //return (float)e.Evaluate();
+        e.Parameters["x"] = v.x;
+        e.Parameters["y"] = v.y;
         return (float)e.Evaluate();
     }
 
