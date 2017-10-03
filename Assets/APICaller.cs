@@ -16,7 +16,7 @@ public class APICaller : MonoBehaviour {
 		
 	}
 
-    public string Send(Texture2D texture2D)
+    public void Send(Texture2D texture2D, System.Action<WWW> callback)
     {
         byte[] bytes = texture2D.EncodeToJPG();
         File.WriteAllBytes(Application.persistentDataPath + "/screenshot.jpg", bytes);
@@ -29,17 +29,17 @@ public class APICaller : MonoBehaviour {
         headers["app_id"] = "agomezvasq_gmail_com";
         headers["app_key"] = "af7b3558a998c429f98a";
         WWW www = new WWW("https://api.mathpix.com/v3/latex", asd, headers);
-        StartCoroutine(WaitForRequest(www));
-        return www.text;
+        StartCoroutine(WaitForRequest(www, callback));
     }
 
-    public IEnumerator WaitForRequest(WWW www)
+    public IEnumerator WaitForRequest(WWW www, System.Action<WWW> callback)
     {
         yield return www;
 
         if (www.error == null)
         {
             Debug.Log(www.text);
+            callback(www);
         }
         else
         {

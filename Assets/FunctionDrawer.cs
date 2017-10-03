@@ -8,7 +8,7 @@ public class FunctionDrawer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        draw("x*x + y*y");
+        //draw("x*x + y*y");
 	}
 	
 	// Update is called once per frame

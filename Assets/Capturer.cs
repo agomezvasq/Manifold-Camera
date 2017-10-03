@@ -104,16 +104,23 @@ public class Capturer : MonoBehaviour {
                 texture2D = new Texture2D(image.Height, image.Width);
                 texture2D.SetPixels32(color32s);
             }
-            string s = apiCaller.Send(texture2D);
-
-            JsonData data = JsonMapper.ToObject(s);
-
-            string function = data["latex"].ToString();
-
-            functionDrawer.draw(function);
+            System.Action<WWW> action = callback;
+            apiCaller.Send(texture2D, action);
         }
     }
 
+    public void callback(WWW www)
+    {
+        string s = www.text;
+
+        JsonData data = JsonMapper.ToObject(s);
+        Debug.Log(data.ToJson());
+        string function = data["latex"].ToString();
+        Debug.Log(function);
+
+        functionDrawer.draw(function);
+    }
+         
     static Color32[] f1(Color32[] matrix, int width, int height)
     {
         Color32[] ret = new Color32[width * height];
