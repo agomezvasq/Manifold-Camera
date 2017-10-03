@@ -32,6 +32,11 @@ public class Function3D : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        start();
+    }
+
+    public void start()
+    {
         meshFilter1 = top.GetComponent<MeshFilter>();
         meshFilter2 = bottom.GetComponent<MeshFilter>();
         meshFilter1.mesh = new Mesh();
@@ -89,6 +94,8 @@ public class Function3D : MonoBehaviour
         meshFilter2.mesh.vertices = vertices;
         mesh.RecalculateNormals();
         meshFilter2.mesh.RecalculateNormals();
+        top.GetComponent<MeshRenderer>().enabled = true;
+        bottom.GetComponent<MeshRenderer>().enabled = true;
     }
 
     //ExpressionContext context;

@@ -21,6 +21,7 @@ public class FunctionDrawer : MonoBehaviour {
         GameObject gameObject = Instantiate(function3DObject, transform.position + Vector3.zero, Quaternion.identity, transform) as GameObject;
         Function3D function3D = gameObject.GetComponent<Function3D>();
         function3D.function = function;
+        function3D.start();
         function3D.compile();
         function3D.update();
     }
