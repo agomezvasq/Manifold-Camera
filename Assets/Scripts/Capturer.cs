@@ -10,6 +10,8 @@ public class Capturer : MonoBehaviour {
     public APICaller apiCaller;
     public FunctionDrawer functionDrawer;
 
+    public UnityEngine.UI.Text text;
+
     private bool mAccessCameraImage = true;
 
     // The desired camera image pixel format
@@ -115,12 +117,30 @@ public class Capturer : MonoBehaviour {
 
         JsonData data = JsonMapper.ToObject(s);
         Debug.Log(data.ToJson());
-        string function = data["latex"].ToString();
+        string function = stripWhiteSpace(data["latex"].ToString());
         Debug.Log(function);
+
+        function = function.Replace("\\operatorname{sin}", "Sin");
+        function = function.Replace("\\operatorname{cos}", "Cos");
+
+        text.text = function;
 
         functionDrawer.draw(function);
     }
-         
+
+    static string stripWhiteSpace(string s)
+    {
+        string ns = "";
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (!s[i].ToString().Equals(" "))
+            {
+                ns += s[i];
+            }
+        }
+        return ns;
+    }
+
     static Color32[] f1(Color32[] matrix, int width, int height)
     {
         Color32[] ret = new Color32[width * height];

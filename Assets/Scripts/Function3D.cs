@@ -93,8 +93,8 @@ public class Function3D : MonoBehaviour
             for (int j = 0; j < yVertices; j++)
             {
                 Vector3 vertex = vertices[vertexIndex];
-                float x = vertex.x - width / 2f - center.x;
-                float y = vertex.z - height / 2f - center.z;
+                float x = vertex.x - center.x;
+                float y = vertex.z - center.z;
                 vertices[vertexIndex] = new Vector3(vertex.x, f(new Vector3(x, y, 0f)) + center.y + 5f, vertex.z);
                 vertexIndex++;
             }
@@ -132,7 +132,7 @@ public class Function3D : MonoBehaviour
         {
             for (int j = 0; j < yVertices; j++)
             {
-                vertices[vertexIndex] = new Vector3(j * width / (xVertices - 1), 0, i * height / (yVertices - 1));
+                vertices[vertexIndex] = new Vector3(j * width / (xVertices - 1) - width / 2f, 0, i * height / (yVertices - 1) - height / 2f);
                 vertexIndex++;
             }
         }
@@ -169,7 +169,7 @@ public class Function3D : MonoBehaviour
         {
             for (int j = 0; j < yVertices; j++)
             {
-                vertices[vertexIndex] = new Vector3(j * width / (xVertices - 1), 0, i * height / (yVertices - 1));
+                vertices[vertexIndex] = new Vector3(j * width / (xVertices - 1) - width / 2f, 0, i * height / (yVertices - 1) - height / 2f);
                 vertexIndex++;
             }
         }

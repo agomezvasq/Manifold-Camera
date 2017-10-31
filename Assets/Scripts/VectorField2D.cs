@@ -24,7 +24,7 @@ public class VectorField2D : MonoBehaviour {
             {
                 GameObject instObj = Instantiate(obj, transform) as GameObject;
                 Vector2D vector2D = instObj.GetComponent<Vector2D>();
-                vector2D.v = new Vector3(i, 0, j);
+                vector2D.v = new Vector3(i * 11f - 5.5f, 0.1f, j * 11f - 5.5f);
                 vector2D.sex = sex;
                 vector2D.sey = sey;
                 vector2D.asd = asd;

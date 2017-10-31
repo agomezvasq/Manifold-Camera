@@ -68,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1272474198283454}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.49, y: 0, z: 1.49}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4895357489191374}
   m_RootOrder: 0
@@ -170,7 +170,7 @@ LineRenderer:
   - {x: 0.49, y: 0, z: 1.49}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 0.025
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:

@@ -69,7 +69,7 @@ public class ClippableObject : MonoBehaviour
 
     public void update()
     {
-        plane1Position = new Vector3(planePreviewSize / 2f, 0, planePreviewSize / 2f);
-        plane2Position = new Vector3(planePreviewSize / 2f, planePreviewSize, planePreviewSize / 2f);
+        plane1Position = new Vector3(0, 0, 0);
+        plane2Position = new Vector3(0, planePreviewSize, 0);
     }
 }

@@ -51,7 +51,11 @@ public class Vector3D : MonoBehaviour {
         lineRenderer.SetPositions(frames[r]);
         if (lineRenderer.positionCount != 0)
         {
+            sphere.SetActive(true);
             sphere.transform.position = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
+        } else
+        {
+            sphere.SetActive(false);
         }
         r++;
         if (r >= frames.Count)
@@ -111,13 +115,13 @@ public class Vector3D : MonoBehaviour {
             List<Vector3> p = new List<Vector3>();
             for (int i = 0; i < 10; i++)
             {
-                parameters["x"] = a.x;
-                parameters["y"] = a.y;
-                parameters["z"] = a.z;
+                parameters["x"] = a.x / 10f;
+                parameters["y"] = a.y / 10f;
+                parameters["z"] = a.z / 10f;
                 parameters["t"] = t;
-                Vector3 aa = new Vector3(Convert.ToSingle(ex.Evaluate()), Convert.ToSingle(ey.Evaluate()), Convert.ToSingle(ez.Evaluate())) * asd;
+                Vector3 aa = new Vector3(Convert.ToSingle(ex.Evaluate()) * 10f, Convert.ToSingle(ey.Evaluate()) * 10f, Convert.ToSingle(ez.Evaluate()) * 10f) * asd;
                 aa = a + aa;
-                if (OutOf(new Vector3(5, 5, 5), aa))
+                if (OutOf(new Vector3(5f, 0f, 5f) * 10f, aa))
                 {
                     break;
                 }
@@ -130,7 +134,7 @@ public class Vector3D : MonoBehaviour {
 
     public static bool OutOf(Vector3 position, Vector3 a)
     {
-        return Mathf.Abs(a.x) > position.x || Mathf.Abs(a.y) > position.y || Mathf.Abs(a.z) > position.z || float.IsNaN(a.x) || float.IsNaN(a.y) || float.IsNaN(a.z);
+        return Mathf.Abs(a.x) > position.x || a.y < position.y || Mathf.Abs(a.z) > position.z || float.IsNaN(a.x) || float.IsNaN(a.y) || float.IsNaN(a.z);
     }
 
 

@@ -58,21 +58,24 @@ public class Function2D : MonoBehaviour {
     public void update()
     {
         e = new Expression(function);
-        if (Mathf.Abs(center.y) <= 5f)
+        float d = 50f;
+        float t = 1f;
+        Debug.Log(transform.lossyScale.x);
+        if (Mathf.Abs(center.y) <= d)
         {
             xAxis.enabled = true;
-            xAxis.SetPosition(0, plane.transform.position + new Vector3(-5f, 0.05f, -center.y));
-            xAxis.SetPosition(1, plane.transform.position + new Vector3(5f, 0.05f, -center.y));
+            xAxis.SetPosition(0, plane.transform.position + new Vector3(-d, 0.05f, -center.y));
+            xAxis.SetPosition(1, plane.transform.position + new Vector3(d, 0.05f, -center.y));
         }
         else
         {
             xAxis.enabled = false;
         }
-        if (Mathf.Abs(center.x) <= 5f)
+        if (Mathf.Abs(center.x) <= d)
         {
             yAxis.enabled = true;
-            yAxis.SetPosition(0, plane.transform.position + new Vector3(-center.x, 0.05f, -5f));
-            yAxis.SetPosition(1, plane.transform.position + new Vector3(-center.x, 0.05f, 5f));
+            yAxis.SetPosition(0, plane.transform.position + new Vector3(-center.x, 0.05f, -d));
+            yAxis.SetPosition(1, plane.transform.position + new Vector3(-center.x, 0.05f, d));
         }
         else
         {
@@ -85,22 +88,22 @@ public class Function2D : MonoBehaviour {
         }
         lineRenderer.positionCount = 101;
         int a = 0;
-        for (float i = -5f; i <= 5f; i += 0.1f)
+        for (float i = -d; i <= d; i += t)
         {
             float s = f(center.x + i) - center.y;
             if (!System.Single.IsNaN(s))
             {
-                if (s <= 5f && s >= -5f)
+                if (s <= d && s >= -d)
                 {
                     lineRenderer.SetPosition(a, plane.transform.position + new Vector3(i, 0.05f, s));
                 }
-                else if (s > 5f)
+                else if (s > d)
                 {
-                    lineRenderer.SetPosition(a, plane.transform.position + new Vector3(i, 0.05f, 5f));
+                    lineRenderer.SetPosition(a, plane.transform.position + new Vector3(i, 0.05f, d));
                 }
-                else if (s < 5f)
+                else if (s < d)
                 {
-                    lineRenderer.SetPosition(a, plane.transform.position + new Vector3(i, 0.05f, -5f));
+                    lineRenderer.SetPosition(a, plane.transform.position + new Vector3(i, 0.05f, -d));
                 }
             }
             else

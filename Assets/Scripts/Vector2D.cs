@@ -49,7 +49,11 @@ public class Vector2D : MonoBehaviour {
         lineRenderer.SetPositions(frames[r]);
         if (lineRenderer.positionCount != 0)
         {
+            sphere.SetActive(true);
             sphere.transform.position = lineRenderer.GetPosition(lineRenderer.positionCount - 1);
+        } else
+        {
+            sphere.SetActive(false);
         }
         r++;
         if (r >= frames.Count)
@@ -109,12 +113,12 @@ public class Vector2D : MonoBehaviour {
             List<Vector3> p = new List<Vector3>();
             for (int i = 0; i < 10; i++)
             {
-                parameters["x"] = a.x;
-                parameters["y"] = a.z;
+                parameters["x"] = a.x / 10f;
+                parameters["y"] = a.z / 10f;
                 parameters["t"] = t;
-                Vector3 aa = new Vector3(Convert.ToSingle(ex.Evaluate()), 0f, Convert.ToSingle(ey.Evaluate())) * asd;
+                Vector3 aa = new Vector3(Convert.ToSingle(ex.Evaluate()) * 10f, 0f, Convert.ToSingle(ey.Evaluate()) * 10f) * asd;
                 aa = a + aa;
-                if (OutOf(new Vector3(5, 5, 5), aa))
+                if (OutOf(new Vector3(5f, 5f, 5f) * 10f, aa))
                 {
                     break;
                 }
@@ -144,7 +148,7 @@ public class Vector2D : MonoBehaviour {
         ex.Parameters = parameters;
         ey.Parameters = parameters;
         changed = true;
-        transform.position = v;
+        transform.localPosition = v;
         sdfa();
     }
 }

@@ -28,7 +28,7 @@ public class VectorField3D : MonoBehaviour {
                 {
                     GameObject instObj = Instantiate(obj, transform) as GameObject;
                     Vector3D vector3D = instObj.GetComponent<Vector3D>();
-                    vector3D.v = new Vector3(i, j, k);
+                    vector3D.v = new Vector3(i * 11f - 5.5f, j * 11f + 5.5f, k * 11f - 5.5f);
                     vector3D.sex = sex;
                     vector3D.sey = sey;
                     vector3D.sez = sez;

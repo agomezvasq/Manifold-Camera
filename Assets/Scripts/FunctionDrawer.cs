@@ -23,32 +23,43 @@ public class FunctionDrawer : MonoBehaviour {
 
     public void draw(string function)
     {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
         string s = sub(function, 0, function.IndexOf("="));
         Debug.Log(s);
         string f = sub(function, function.IndexOf("=") + 1, function.Length);
         Debug.Log(f);
-        if (s.Contains("\\vec"))
+        if (f.Contains("I"))
         {
             if (s.Contains("(x,y,z)"))
             {
                 GameObject gameObject = Instantiate(vectorField3DObject, transform.position + Vector3.up, Quaternion.identity, transform) as GameObject;
                 VectorField3D vectorField3D = gameObject.GetComponent<VectorField3D>();
-                int i = f.IndexOf("\\hat{i}");
-                int j = f.IndexOf("\\hat{j}");
-                int k = f.IndexOf("\\hat{k}");
+                int i = f.IndexOf("I");
+                int j = f.IndexOf("J");
+                int k = f.IndexOf("K");
+                Debug.Log(sub(f, 0, i));
+                Debug.Log(sub(f, i + 2, j));
+                Debug.Log(sub(f, j + 2, k));
                 vectorField3D.sex = sub(f, 0, i);
-                vectorField3D.sey = sub(f, i + 9, j);
-                vectorField3D.sez = sub(f, j + 9, k);
+                vectorField3D.sey = sub(f, i + 2, j);
+                vectorField3D.sez = sub(f, j + 2, k);
                 vectorField3D.update();
             }
             else if (s.Contains("(x,y)"))
             {
                 GameObject gameObject = Instantiate(vectorField2DObject, transform.position + Vector3.up, Quaternion.identity, transform) as GameObject;
                 VectorField2D vectorField2D = gameObject.GetComponent<VectorField2D>();
-                int i = f.IndexOf("\\hat{i}");
-                int j = f.IndexOf("\\hat{j}");
+                Debug.Log("vector2d");
+                int i = f.IndexOf("I");
+                int j = f.IndexOf("J");
+                Debug.Log(i);
+                Debug.Log(sub(f, 0, i));
+                Debug.Log(sub(f, i + 2, j));
                 vectorField2D.sex = sub(f, 0, i);
-                vectorField2D.sey = sub(f, i + 9, j);
+                vectorField2D.sey = sub(f, i + 2, j);
                 vectorField2D.update();
             }
         } else
