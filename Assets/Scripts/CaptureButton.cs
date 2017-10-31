@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewBehaviourScript2 : MonoBehaviour {
+public class CaptureButton : MonoBehaviour {
 
     public Capturer capturer;
 

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="aa2" size="10.000000 13.010309" />
+    <ImageTarget name="aa" size="10.000000 13.010309" />
+    <ImageTarget name="d" size="10.000000 12.022161" />
+    <ImageTarget name="CPJxsQ3UAAAaUhL2" size="10.000000 12.352232" />
+    <ImageTarget name="CPJxsQ3UAAAaUhL" size="10.000000 12.352232" />
+    <ImageTarget name="DesignSponge_Wallpaper_JenAltman_Februayr" size="10.000000 6.250000" />
+    <ImageTarget name="epScgBK" size="10.000000 6.233333" />
+    <ImageTarget name="v" size="10.000000 6.643518" />
+    <ImageTarget name="voronoi-fracture" size="10.000000 5.626000" />
     <ImageTarget name="c" size="10.000000 9.980431" />
     <ImageTarget name="u" size="10.000000 10.000000" />
     <ImageTarget name="a" size="10.000000 9.980431" />

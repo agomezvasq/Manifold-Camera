@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d1fafcfe01474dffaee084eae55abc75
+guid: 21b56687ef7e4da98e0ecb47022c0342
 TextureImporter:
   fileIDToRecycleName:
     8900000: generatedCubemap
@@ -71,6 +71,22 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
     maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 0

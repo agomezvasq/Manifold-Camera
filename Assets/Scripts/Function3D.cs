@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Ciloci.Flee;
 using System;
 using NCalc;
 
@@ -14,6 +13,9 @@ public class Function3D : MonoBehaviour
 
     public GameObject top;
     public GameObject bottom;
+
+    ClippableObject topClippableObject;
+    ClippableObject bottomClippableObject;
 
     MeshFilter meshFilter1;
     MeshFilter meshFilter2;
@@ -41,6 +43,9 @@ public class Function3D : MonoBehaviour
         meshFilter2 = bottom.GetComponent<MeshFilter>();
         meshFilter1.mesh = new Mesh();
         meshFilter2.mesh = new Mesh();
+
+        topClippableObject = top.GetComponent<ClippableObject>();
+        bottomClippableObject = bottom.GetComponent<ClippableObject>();
 
         //context = new ExpressionContext();
         //context.Imports.AddType(typeof(System.Math));
@@ -76,6 +81,10 @@ public class Function3D : MonoBehaviour
     
     public void update()
     {
+        topClippableObject.planePreviewSize = width * 10f;
+        topClippableObject.update();
+        bottomClippableObject.planePreviewSize = width * 10f;
+        bottomClippableObject.update();
         Mesh mesh = meshFilter1.mesh;
         Vector3[] vertices = mesh.vertices;
         int vertexIndex = 0;
@@ -110,7 +119,7 @@ public class Function3D : MonoBehaviour
         //return (float)e.Evaluate();
         e.Parameters["x"] = v.x;
         e.Parameters["y"] = v.y;
-        return (float)e.Evaluate();
+        return System.Convert.ToSingle(e.Evaluate());
     }
 
     void Grid()
