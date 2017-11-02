@@ -31,10 +31,10 @@ public class NewBehaviourScript : MonoBehaviour {
                 s = "f(x,y)=(2*x+1)/y";
                 break;
             case 2:
-                s = "f(x,y)=Sin(y+t)I+Sin(x)J";
+                s = "f(x,y)=(Sin(y+t),Sin(x))";
                 break;
             case 3:
-                s = "f(x,y,z)=Sin(x)I+Cos(z)J+Sin(t)K";
+                s = "f(x,y,z)=(Sin(x),Cos(z),Sin(x))";
                 break;
         }
         functionDrawer.draw(s);

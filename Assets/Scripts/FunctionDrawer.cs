@@ -31,21 +31,17 @@ public class FunctionDrawer : MonoBehaviour {
         Debug.Log(s);
         string f = sub(function, function.IndexOf("=") + 1, function.Length);
         Debug.Log(f);
-        if (f.Contains("I"))
+        if (f.Contains(","))
         {
+            f = sub(f, 1, f.Length - 1);
+            string[] comp = f.Split(',');
             if (s.Contains("(x,y,z)"))
             {
                 GameObject gameObject = Instantiate(vectorField3DObject, transform.position + Vector3.up, Quaternion.identity, transform) as GameObject;
                 VectorField3D vectorField3D = gameObject.GetComponent<VectorField3D>();
-                int i = f.IndexOf("I");
-                int j = f.IndexOf("J");
-                int k = f.IndexOf("K");
-                Debug.Log(sub(f, 0, i));
-                Debug.Log(sub(f, i + 2, j));
-                Debug.Log(sub(f, j + 2, k));
-                vectorField3D.sex = sub(f, 0, i);
-                vectorField3D.sey = sub(f, i + 2, j);
-                vectorField3D.sez = sub(f, j + 2, k);
+                vectorField3D.sex = comp[0];
+                vectorField3D.sey = comp[1];
+                vectorField3D.sez = comp[2];
                 vectorField3D.update();
             }
             else if (s.Contains("(x,y)"))
@@ -53,13 +49,10 @@ public class FunctionDrawer : MonoBehaviour {
                 GameObject gameObject = Instantiate(vectorField2DObject, transform.position + Vector3.up, Quaternion.identity, transform) as GameObject;
                 VectorField2D vectorField2D = gameObject.GetComponent<VectorField2D>();
                 Debug.Log("vector2d");
-                int i = f.IndexOf("I");
-                int j = f.IndexOf("J");
-                Debug.Log(i);
-                Debug.Log(sub(f, 0, i));
-                Debug.Log(sub(f, i + 2, j));
-                vectorField2D.sex = sub(f, 0, i);
-                vectorField2D.sey = sub(f, i + 2, j);
+                Debug.Log(comp[0]);
+                Debug.Log(comp[1]);
+                vectorField2D.sex = comp[0];
+                vectorField2D.sey = comp[1];
                 vectorField2D.update();
             }
         } else

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using NCalc;
+using Vuforia;
 
 public class Function3D : MonoBehaviour
 {
@@ -77,10 +78,41 @@ public class Function3D : MonoBehaviour
         }
         oldMultiplier = multiplier;
         oldCenter = center;
+        if (lerp)
+        {
+            Mesh mesh = meshFilter1.mesh;
+            Vector3[] vertices = mesh.vertices;
+            int vertexIndex = 0;
+            t += Time.smoothDeltaTime;
+            for (int i = 0; i < xVertices; i++)
+            {
+                for (int j = 0; j < yVertices; j++)
+                {
+                    vertices[vertexIndex] = Vector3.Lerp(vertices[vertexIndex], vectors[i, j], t);
+                    vertexIndex++;
+                }
+            }
+            mesh.vertices = vertices;
+            meshFilter2.mesh.vertices = vertices;
+            mesh.RecalculateNormals();
+            meshFilter2.mesh.RecalculateNormals();
+            if (t >= 1f)
+            {
+                lerp = false;
+            }
+        }
     }
+
+    float t;
+
+    Vector3[,] vectors;
+    bool lerp;
     
     public void update()
     {
+        vectors = new Vector3[xVertices, yVertices];
+        t = 0;
+        lerp = true;
         topClippableObject.planePreviewSize = width * 10f;
         topClippableObject.update();
         bottomClippableObject.planePreviewSize = width * 10f;
@@ -95,7 +127,8 @@ public class Function3D : MonoBehaviour
                 Vector3 vertex = vertices[vertexIndex];
                 float x = vertex.x - center.x;
                 float y = vertex.z - center.z;
-                vertices[vertexIndex] = new Vector3(vertex.x, f(new Vector3(x, y, 0f)) + center.y + 5f, vertex.z);
+                //vertices[vertexIndex] = new Vector3(vertex.x, f(new Vector3(x, y, 0f)) + center.y + 5f, vertex.z);
+                vectors[i, j] = new Vector3(vertex.x, f(new Vector3(x, y, 0f)) + center.y + 5f, vertex.z);
                 vertexIndex++;
             }
         }

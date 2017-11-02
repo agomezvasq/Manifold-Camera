@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using Vuforia;
 using LitJson;
+using System;
 
 public class Capturer : MonoBehaviour {
 
@@ -117,15 +118,21 @@ public class Capturer : MonoBehaviour {
 
         JsonData data = JsonMapper.ToObject(s);
         Debug.Log(data.ToJson());
-        string function = stripWhiteSpace(data["latex"].ToString());
-        Debug.Log(function);
+        if (string.IsNullOrEmpty(data["error"].ToString()))
+        {
+            string function = stripWhiteSpace(data["latex"].ToString());
+            Debug.Log(function);
 
-        function = function.Replace("\\operatorname{sin}", "Sin");
-        function = function.Replace("\\operatorname{cos}", "Cos");
+            function = function.Replace("\\operatorname{sin}", "Sin");
+            function = function.Replace("\\operatorname{cos}", "Cos");
 
-        text.text = function;
+            text.text = function;
 
-        functionDrawer.draw(function);
+            functionDrawer.draw(function);
+        } else
+        {
+            text.text = data["error"].ToString();
+        }
     }
 
     static string stripWhiteSpace(string s)

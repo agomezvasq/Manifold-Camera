@@ -109,7 +109,7 @@ public class Vector3D : MonoBehaviour {
     {
         frames = new List<Vector3[]>();
         Vector3 dd = v;
-        for (float t = 0f; t < 2f * 3.14159265f; t += 0.04170837504f)
+        //for (float t = 0f; t < 2f * 3.14159265f; t += 0.04170837504f)
         {
             Vector3 a = dd;
             List<Vector3> p = new List<Vector3>();
