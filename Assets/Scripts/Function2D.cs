@@ -4,7 +4,7 @@ using UnityEngine;
 using NCalc;
 using System;
 
-public class Function2D : MonoBehaviour {
+public class Function2D : MonoBehaviour, IObj {
 
     public string function;
 
@@ -18,6 +18,8 @@ public class Function2D : MonoBehaviour {
     public GameObject plane;
 
     Expression e;
+
+    private Target main;
 
     // Use this for initialization
     void Start()
@@ -117,5 +119,20 @@ public class Function2D : MonoBehaviour {
     public static bool Out(Vector2 position, Vector2 a)
     {
         return Mathf.Abs(a.x) > position.x || Mathf.Abs(a.y) > position.y;
+    }
+
+    public Target GetMain()
+    {
+        return main;
+    }
+
+    public void SetMain(Target main)
+    {
+        this.main = main;
+    }
+
+    public void SetParent(Transform parent)
+    {
+        transform.parent = parent;
     }
 }

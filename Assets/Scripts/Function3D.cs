@@ -5,7 +5,7 @@ using System;
 using NCalc;
 using Vuforia;
 
-public class Function3D : MonoBehaviour
+public class Function3D : MonoBehaviour, IObj
 {
 
     public string function;
@@ -31,6 +31,8 @@ public class Function3D : MonoBehaviour
     public float multiplier;
     Vector3 oldCenter;
     public Vector3 center;
+
+    private Target main;
 
     // Use this for initialization
     void Start()
@@ -227,5 +229,20 @@ public class Function3D : MonoBehaviour
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+    }
+
+    public Target GetMain()
+    {
+        return main;
+    }
+
+    public void SetMain(Target main)
+    {
+        this.main = main;
+    }
+
+    public void SetParent(Transform parent)
+    {
+        transform.parent = parent;
     }
 }

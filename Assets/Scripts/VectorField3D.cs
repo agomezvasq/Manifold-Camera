@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NCalc;
+using System;
 
-public class VectorField3D : MonoBehaviour {
+public class VectorField3D : MonoBehaviour, IObj {
 
     public GameObject obj;
 
@@ -16,6 +17,8 @@ public class VectorField3D : MonoBehaviour {
     public string sez;
 
     public float asd;
+
+    private Target main;
 
     // Use this for initialization
     void Start()
@@ -60,5 +63,20 @@ public class VectorField3D : MonoBehaviour {
             vector3D.asd = asd;
             vector3D.update();
         }
+    }
+
+    public Target GetMain()
+    {
+        return main;
+    }
+
+    public void SetMain(Target main)
+    {
+        this.main = main;
+    }
+
+    public void SetParent(Transform parent)
+    {
+        transform.parent = parent;
     }
 }

@@ -10,6 +10,7 @@ public class Capturer : MonoBehaviour {
 
     public APICaller apiCaller;
     public FunctionDrawer functionDrawer;
+    public Main main;
 
     public UnityEngine.UI.Text text;
 
