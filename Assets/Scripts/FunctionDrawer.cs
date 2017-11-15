@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NCalc;
+using System.Text.RegularExpressions;
 
 public class FunctionDrawer : MonoBehaviour {
 
@@ -23,12 +25,10 @@ public class FunctionDrawer : MonoBehaviour {
 		
 	}
 
+    
+
     public void draw(string function)
     {
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
-        }
         string s = sub(function, 0, function.IndexOf("="));
         Debug.Log(s);
         string f = sub(function, function.IndexOf("=") + 1, function.Length);
@@ -41,6 +41,7 @@ public class FunctionDrawer : MonoBehaviour {
             if (s.Contains("(x,y,z)"))
             {
                 GameObject gameObject = Instantiate(vectorField3DObject, transform.position + Vector3.up, Quaternion.identity) as GameObject;
+                gameObject.transform.localScale = new Vector3(10, 10, 10);
                 VectorField3D vectorField3D = gameObject.GetComponent<VectorField3D>();
                 vectorField3D.sex = comp[0];
                 vectorField3D.sey = comp[1];
@@ -51,6 +52,7 @@ public class FunctionDrawer : MonoBehaviour {
             else if (s.Contains("(x,y)"))
             {
                 GameObject gameObject = Instantiate(vectorField2DObject, transform.position + Vector3.up, Quaternion.identity) as GameObject;
+                gameObject.transform.localScale = new Vector3(10, 10, 10);
                 VectorField2D vectorField2D = gameObject.GetComponent<VectorField2D>();
                 Debug.Log("vector2d");
                 Debug.Log(comp[0]);
@@ -62,9 +64,21 @@ public class FunctionDrawer : MonoBehaviour {
             }
         } else
         {
+            Debug.Log(function);
+            Regex r = new Regex("([a-zA-Z0-9]*?)\\^\\((.+?)\\)");
+            Match m = r.Match(function);
+
+            if (m.Success)
+            {
+                function = r.Replace(function, "Pow($1,$2)");
+                Debug.Log(m.Groups[1]);
+                Debug.Log(m.Groups[2]);
+            }
+            Debug.Log(function);
             if (s.Contains("(x,y)"))
             {
                 GameObject gameObject = Instantiate(function3DObject, transform.position + Vector3.up, Quaternion.identity) as GameObject;
+                gameObject.transform.localScale = new Vector3(10, 10, 10);
                 Function3D function3D = gameObject.GetComponent<Function3D>();
                 function3D.function = f;
                 function3D.start();
@@ -75,6 +89,7 @@ public class FunctionDrawer : MonoBehaviour {
             else if (s.Contains("(x)"))
             {
                 GameObject gameObject = Instantiate(function2DObject, transform.position + Vector3.up, Quaternion.identity) as GameObject;
+                gameObject.transform.localScale = new Vector3(100, 100, 100);
                 Function2D function2D = gameObject.GetComponent<Function2D>();
                 Debug.Log("2D");
                 function2D.function = f;
@@ -84,7 +99,9 @@ public class FunctionDrawer : MonoBehaviour {
         }
         if (obj != null)
         {
+            Debug.Log("Queue");
             main.unassigned.Enqueue(obj);
+            Debug.Log(main.unassigned.Count);
         }
     }
 

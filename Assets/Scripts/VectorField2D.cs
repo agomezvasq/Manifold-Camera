@@ -68,6 +68,11 @@ public class VectorField2D : MonoBehaviour, IObj
         this.main = main;
     }
 
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
     public void SetParent(Transform parent)
     {
         transform.parent = parent;

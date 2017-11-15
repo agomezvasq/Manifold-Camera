@@ -145,9 +145,9 @@ public class Vector3D : MonoBehaviour {
 
     public void update()
     {
-        ex = new Expression(sex);
-        ey = new Expression(sey);
-        ez = new Expression(sez);
+        ex = new Expression(sex, EvaluateOptions.IgnoreCase);
+        ey = new Expression(sey, EvaluateOptions.IgnoreCase);
+        ez = new Expression(sez, EvaluateOptions.IgnoreCase);
         parameters = new Dictionary<string, object>();
         ex.Parameters = parameters;
         ey.Parameters = parameters;

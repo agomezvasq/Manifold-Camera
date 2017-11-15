@@ -5,6 +5,7 @@ using UnityEngine;
 using Vuforia;
 using LitJson;
 using System;
+using System.Text.RegularExpressions;
 
 public class Capturer : MonoBehaviour {
 
@@ -126,6 +127,10 @@ public class Capturer : MonoBehaviour {
 
             function = function.Replace("\\operatorname{sin}", "Sin");
             function = function.Replace("\\operatorname{cos}", "Cos");
+            function = function.Replace("\\operatorname{tan}", "Tan");
+
+            function = function.Replace("{", "(");
+            function = function.Replace("}", ")");
 
             text.text = function;
 

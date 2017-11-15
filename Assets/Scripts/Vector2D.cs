@@ -142,8 +142,8 @@ public class Vector2D : MonoBehaviour {
 
     public void update()
     {
-        ex = new Expression(sex);
-        ey = new Expression(sey);
+        ex = new Expression(sex, EvaluateOptions.IgnoreCase);
+        ey = new Expression(sey, EvaluateOptions.IgnoreCase);
         parameters = new Dictionary<string, object>();
         ex.Parameters = parameters;
         ey.Parameters = parameters;

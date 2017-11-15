@@ -56,8 +56,6 @@ public class Function3D : MonoBehaviour, IObj
 
         Grid();
         Grid1();
-
-        update();
     }
 
     public void compile()
@@ -112,34 +110,40 @@ public class Function3D : MonoBehaviour, IObj
     
     public void update()
     {
-        vectors = new Vector3[xVertices, yVertices];
-        t = 0;
-        lerp = true;
-        topClippableObject.planePreviewSize = width * 10f;
-        topClippableObject.update();
-        bottomClippableObject.planePreviewSize = width * 10f;
-        bottomClippableObject.update();
-        Mesh mesh = meshFilter1.mesh;
-        Vector3[] vertices = mesh.vertices;
-        int vertexIndex = 0;
-        for (int i = 0; i < xVertices; i++)
-        {
-            for (int j = 0; j < yVertices; j++)
+        try {
+            vectors = new Vector3[xVertices, yVertices];
+            t = 0;
+            lerp = true;
+            topClippableObject.planePreviewSize = width * 10f;
+            topClippableObject.update();
+            bottomClippableObject.planePreviewSize = width * 10f;
+            bottomClippableObject.update();
+            Mesh mesh = meshFilter1.mesh;
+            Vector3[] vertices = mesh.vertices;
+            int vertexIndex = 0;
+            for (int i = 0; i < xVertices; i++)
             {
-                Vector3 vertex = vertices[vertexIndex];
-                float x = vertex.x - center.x;
-                float y = vertex.z - center.z;
-                //vertices[vertexIndex] = new Vector3(vertex.x, f(new Vector3(x, y, 0f)) + center.y + 5f, vertex.z);
-                vectors[i, j] = new Vector3(vertex.x, f(new Vector3(x, y, 0f)) + center.y + 5f, vertex.z);
-                vertexIndex++;
+                for (int j = 0; j < yVertices; j++)
+                {
+                    Vector3 vertex = vertices[vertexIndex];
+                    float x = vertex.x - center.x;
+                    float y = vertex.z - center.z;
+                    //vertices[vertexIndex] = new Vector3(vertex.x, f(new Vector3(x, y, 0f)) + center.y + 5f, vertex.z);
+                    vectors[i, j] = new Vector3(vertex.x, f(new Vector3(x, y, 0f)) + center.y + 5f, vertex.z);
+                    vertexIndex++;
+                }
             }
+            mesh.vertices = vertices;
+            meshFilter2.mesh.vertices = vertices;
+            mesh.RecalculateNormals();
+            meshFilter2.mesh.RecalculateNormals();
+            top.GetComponent<MeshRenderer>().enabled = true;
+            bottom.GetComponent<MeshRenderer>().enabled = true;
+            Debug.Log("update");
+        } catch (Exception e)
+        {
+            Debug.Log(e.Message);
         }
-        mesh.vertices = vertices;
-        meshFilter2.mesh.vertices = vertices;
-        mesh.RecalculateNormals();
-        meshFilter2.mesh.RecalculateNormals();
-        top.GetComponent<MeshRenderer>().enabled = true;
-        bottom.GetComponent<MeshRenderer>().enabled = true;
     }
 
     //ExpressionContext context;
@@ -239,6 +243,11 @@ public class Function3D : MonoBehaviour, IObj
     public void SetMain(Target main)
     {
         this.main = main;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 
     public void SetParent(Transform parent)

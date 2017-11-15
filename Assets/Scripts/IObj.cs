@@ -7,5 +7,6 @@ public interface IObj {
     Target GetMain();
     void SetMain(Target main);
     void update();
+    GameObject GetGameObject();
     void SetParent(Transform parent);
 }
